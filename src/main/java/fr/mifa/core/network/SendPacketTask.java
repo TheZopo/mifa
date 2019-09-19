@@ -21,7 +21,7 @@ public class SendPacketTask implements Runnable {
         ObjectOutput stream = _client.getOutputStream();
         try {
             stream.writeObject(_packet);
-            stream.flush(); // do we need to flush every time ?
+            stream.flush(); // TODO do we need to flush every time ?
         }
         catch (IOException ex) {
             //TODO
