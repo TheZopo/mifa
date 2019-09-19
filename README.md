@@ -1,4 +1,4 @@
-#mIFA-core
+# mIFA-core
 
 mIFA is a messaging system designed for INSA Lyon students during an university project.
 
