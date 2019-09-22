@@ -9,10 +9,16 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class Client implements IClient {
+public class Client extends Thread implements IClient {
     private Socket _socket;
 
     private ObjectOutput _oos;
+
+    public Client(Socket _socket) {
+        this._socket = _socket;
+    }
+
+    public Client() { }
 
     @Override
     public ObjectOutput getOutputStream() {
@@ -50,5 +56,10 @@ public class Client implements IClient {
     @Override
     public void send(Packet packet) {
         // TODO get newSingleThreadExecutor and launch SendPacketTask
+    }
+
+    @Override
+    public void run() {
+        //TODO receive loop
     }
 }
