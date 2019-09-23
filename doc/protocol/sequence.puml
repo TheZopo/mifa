@@ -1,0 +1,44 @@
+@startuml
+actor Client
+participant Server
+participant Room
+actor OtherClients
+
+
+Client -> Server: <connection>
+Client <-- Server: HelloWorldPacket
+|||
+Client -> Server : AuthPacket(nickname)
+Client <-- Server : RoomListPacket(rooms)
+|||
+group opt join
+    Client -> Server : JoinRoomPacket(roomId)
+    Server -> Room : userJoined(User)
+    Room -> Room : getRoomClients()
+    loop each client
+        Room -> OtherClients : JoinedRoomPacket(roomId, nickname)
+    end
+    Client <-- Server : JoinedRoomPacket(roomId, nickname)
+end
+|||
+
+group opt exchange messages
+    Client -> Server : MessagePacket(roomId, text)
+    Server -> Room : sendMessage(message)
+    Room -> Room : getRoomClients()
+    loop each client
+    Room -> OtherClients : MessageSentPacket(message)
+    end
+    Client <-- Server : MessageSentPacket(message)
+end
+|||
+group opt leave
+    Client -> Server : LeaveRoomPacket(roomId)
+    Server -> Room
+    Room -> Room : getRoomClients()
+    loop each client
+        Room -> OtherClients : LeftRoomPacket(nickname)
+    end
+    Client <-- Server : LeftRoomPacket(nickname)
+end
+@enduml
