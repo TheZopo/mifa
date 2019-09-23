@@ -4,23 +4,19 @@ import fr.mifa.core.network.protocol.Packet;
 
 import java.io.IOException;
 import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.net.Socket;
 
 public class SendPacketTask implements Runnable {
-    private IClient _client;
-
-    private Packet _packet;
+    private IClient client;
+    private Packet packet;
 
     @Override
     public void run() {
-        if (_packet == null || _client == null) {
+        if (packet == null || client == null) {
             return;
         }
-        ObjectOutput stream = _client.getOutputStream();
+        ObjectOutput stream = client.getOutputStream();
         try {
-            stream.writeObject(_packet);
+            stream.writeObject(packet);
             stream.flush(); // TODO do we need to flush every time ?
         }
         catch (IOException ex) {
@@ -29,7 +25,7 @@ public class SendPacketTask implements Runnable {
     }
 
     public SendPacketTask(IClient client, Packet packet) {
-        _client = client;
-        _packet = packet;
+        this.client = client;
+        this.packet = packet;
     }
 }

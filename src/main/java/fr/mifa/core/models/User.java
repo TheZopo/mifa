@@ -1,13 +1,13 @@
 package fr.mifa.core.models;
 
 public class User {
-    private String _nickname;
+    private String nickname;
 
     public String getNickname() {
-        return _nickname;
+        return nickname;
     }
 
     public void setNickname(String nickname) {
-        this._nickname = nickname;
+        this.nickname = nickname;
     }
 }

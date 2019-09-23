@@ -10,29 +10,28 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Client extends Thread implements IClient {
-    private Socket _socket;
-
-    private ObjectOutput _oos;
+    private Socket socket;
+    private ObjectOutput oos;
 
     public Client(Socket _socket) {
-        this._socket = _socket;
+        this.socket = _socket;
     }
 
     public Client() { }
 
     @Override
     public ObjectOutput getOutputStream() {
-        if (_socket != null) {
-            if (_oos == null) {
+        if (socket != null) {
+            if (oos == null) {
                 try {
-                    OutputStream os = _socket.getOutputStream();
-                    _oos = new ObjectOutputStream(os);
+                    OutputStream os = socket.getOutputStream();
+                    oos = new ObjectOutputStream(os);
                 }
                 catch (IOException ex) {
                     //TODO
                 }
             }
-            return _oos;
+            return oos;
         }
         else {
             //TODO
@@ -43,7 +42,7 @@ public class Client extends Thread implements IClient {
     @Override
     public void connect(String address, int port) {
         try {
-            _socket = new Socket(address, port);
+            socket = new Socket(address, port);
         }
         catch (UnknownHostException ex) {
             //TODO

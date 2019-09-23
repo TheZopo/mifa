@@ -1,13 +1,13 @@
 package fr.mifa.core.models;
 
 public abstract class Message {
-    private int _id;
+    private int id;
 
     public int getId() {
-        return _id;
+        return id;
     }
 
     public void setId(int id) {
-        this._id = id;
+        this.id = id;
     }
 }
