@@ -3,13 +3,13 @@ package fr.mifa.core.network.protocol;
 import fr.mifa.core.models.Message;
 
 public class MessagePacket extends Packet {
-    private Message _message;
+    private Message message;
 
     public Message getMessage() {
-        return _message;
+        return message;
     }
 
     public void setMessage(Message message) {
-        this._message = message;
+        this.message = message;
     }
 }

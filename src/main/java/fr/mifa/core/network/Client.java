@@ -1,6 +1,8 @@
 package fr.mifa.core.network;
 
 import fr.mifa.core.network.protocol.Packet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.ObjectOutput;
@@ -10,6 +12,9 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Client extends Thread implements IClient {
+
+    private static final Logger logger = LoggerFactory.getLogger(Client.class);
+
     private Socket _socket;
 
     private ObjectOutput _oos;
@@ -29,13 +34,13 @@ public class Client extends Thread implements IClient {
                     _oos = new ObjectOutputStream(os);
                 }
                 catch (IOException ex) {
-                    //TODO
+                    logger.error(ex.toString());
                 }
             }
             return _oos;
         }
         else {
-            //TODO
+            logger.warn("NULL client socket");
         }
         return null;
     }
@@ -46,10 +51,10 @@ public class Client extends Thread implements IClient {
             _socket = new Socket(address, port);
         }
         catch (UnknownHostException ex) {
-            //TODO
+            logger.error(ex.toString());
         }
         catch (IOException ex) {
-            //TODO
+            logger.error(ex.toString());
         }
     }
 
