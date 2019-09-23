@@ -1,13 +1,15 @@
 package fr.mifa.core.network.protocol;
 
-public class MessageSentPacket {
-    private int messageId;
+import fr.mifa.core.models.Message;
 
-    public int getMessageId() {
-        return messageId;
+public class MessageSentPacket {
+    private Message message;
+
+    public Message getMessage() {
+        return message;
     }
 
-    public void setMessageId(int messageId) {
-        this.messageId = messageId;
+    public void setMessage(Message message) {
+        this.message = message;
     }
 }

@@ -1,13 +1,13 @@
 package fr.mifa.core.network.protocol;
 
 public class LeftRoomPacket {
-    private int roomId;
+    private String nickname;
 
-    public int getRoomId() {
-        return roomId;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

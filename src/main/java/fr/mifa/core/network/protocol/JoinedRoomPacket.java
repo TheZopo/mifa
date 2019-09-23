@@ -1,15 +1,23 @@
 package fr.mifa.core.network.protocol;
 
-import fr.mifa.core.models.Room;
-
 public class JoinedRoomPacket extends Packet {
-    private Room room;
+    private int roomId;
 
-    public Room getRoom() {
-        return room;
+    private String nickname;
+
+    public int getRoomId() {
+        return roomId;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }
