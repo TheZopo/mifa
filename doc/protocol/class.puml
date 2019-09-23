@@ -1,0 +1,72 @@
+@startuml
+class Packet {
+
+}
+
+class AuthPacket {
+- nickname : String
+}
+
+class MessagePacket {
+- message : Message
+}
+
+class JoinRoomPacket {
+- roomId: int
+}
+
+class JoinedRoomPacket {
+- room: Room
+}
+
+class LeaveRoomPacket {
+- roomId : int
+}
+
+class RoomListPacket {
+- rooms : List<Pair<Integer, String>>
+}
+
+
+class HelloPacket {
+
+}
+
+Packet <|-- AuthPacket
+Packet <|-- MessagePacket
+Packet <|-- JoinRoomPacket
+Packet <|-- LeaveRoomPacket
+Packet <|-- RoomListPacket
+Packet <|-- HelloPacket
+
+class Message {
+- id : int
+- roomId : int
+
+- authorId : int
+- authorName : String
+}
+
+class TextMessage {
+- text : String
+}
+
+Message <|-- TextMessage
+
+class Room {
+- id : int
+- name : String
+- messages : List<Message>
+}
+
+class User {
+- id : int
+- nickname : String
+- joinedRoomsIds : List<Integer>
+}
+
+MessagePacket "1" <-- Message
+Room "0.n" <-- Message
+JoinedRoomPacket -- Room
+
+@enduml

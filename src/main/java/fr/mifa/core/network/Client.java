@@ -16,28 +16,28 @@ public class Client extends Thread implements IClient {
     private static final Logger logger = LoggerFactory.getLogger(Client.class);
 
     private Socket _socket;
+    private Socket socket;
+    private ObjectOutput oos;
 
-    private ObjectOutput _oos;
-
-    public Client(Socket _socket) {
-        this._socket = _socket;
+    public Client(Socket socket) {
+        this.socket = socket;
     }
 
     public Client() { }
 
     @Override
     public ObjectOutput getOutputStream() {
-        if (_socket != null) {
-            if (_oos == null) {
+        if (socket != null) {
+            if (oos == null) {
                 try {
-                    OutputStream os = _socket.getOutputStream();
-                    _oos = new ObjectOutputStream(os);
+                    OutputStream os = socket.getOutputStream();
+                    oos = new ObjectOutputStream(os);
                 }
                 catch (IOException ex) {
                     logger.error(ex.toString());
                 }
             }
-            return _oos;
+            return oos;
         }
         else {
             logger.warn("NULL client socket");
@@ -48,7 +48,7 @@ public class Client extends Thread implements IClient {
     @Override
     public void connect(String address, int port) {
         try {
-            _socket = new Socket(address, port);
+            socket = new Socket(address, port);
         }
         catch (UnknownHostException ex) {
             logger.error(ex.toString());
