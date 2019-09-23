@@ -13,8 +13,8 @@ public class Client extends Thread implements IClient {
     private Socket socket;
     private ObjectOutput oos;
 
-    public Client(Socket _socket) {
-        this.socket = _socket;
+    public Client(Socket socket) {
+        this.socket = socket;
     }
 
     public Client() { }
