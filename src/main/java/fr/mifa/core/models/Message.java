@@ -7,6 +7,8 @@ public abstract class Message extends Model {
 
     private String authorName;
 
+    private long timestamp;
+
     public int getRoomId() {
         return roomId;
     }
@@ -31,7 +33,12 @@ public abstract class Message extends Model {
         this.authorName = authorName;
     }
 
+    public long getTimestamp() {
+        return timestamp;
+    }
+
     public Message(int roomId) {
         this.roomId = roomId;
+        this.timestamp = System.currentTimeMillis();
     }
 }
