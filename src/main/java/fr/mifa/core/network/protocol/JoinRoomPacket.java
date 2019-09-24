@@ -10,4 +10,8 @@ public class JoinRoomPacket extends Packet {
     public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
+
+    public JoinRoomPacket(int roomId) {
+        this.roomId = roomId;
+    }
 }

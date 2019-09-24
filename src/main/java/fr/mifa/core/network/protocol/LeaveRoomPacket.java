@@ -10,4 +10,8 @@ public class LeaveRoomPacket extends Packet {
     public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
+
+    public LeaveRoomPacket(int roomId) {
+        this.roomId = roomId;
+    }
 }
