@@ -1,6 +1,6 @@
 package fr.mifa.core.network.protocol;
 
-import javafx.util.Pair;
+import org.javatuples.Pair;
 
 import java.util.ArrayList;
 
