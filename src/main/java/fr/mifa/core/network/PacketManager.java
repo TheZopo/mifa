@@ -16,12 +16,13 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 
-public class PacketManager extends Thread {
+public abstract class PacketManager extends Thread {
 
     private static final Logger logger = LoggerFactory.getLogger(PacketManager.class);
 
     private Socket socket;
     private ObjectOutput oos;
+    private ObjectInput ois;
 
     public PacketManager(Socket socket) {
         this.socket = socket;
@@ -68,6 +69,20 @@ public class PacketManager extends Thread {
 
     @Override
     public void run() {
-        //TODO receive loop
+        try {
+            InputStream is = socket.getInputStream();
+            ois = new ObjectInputStream(is);
+
+            while (true) {
+                Packet packet = (Packet) ois.readObject();
+                processPacket(packet);
+            }
+        } catch (IOException ex) {
+            logger.error(ex.toString());
+        } catch (ClassNotFoundException e) {
+            logger.error("Received packet is not a valid packet, skipping...");
+        }
     }
+
+    protected abstract void processPacket(Packet packet);
 }
