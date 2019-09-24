@@ -6,6 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -13,21 +16,19 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 
-public class Client extends Thread implements IClient {
+public class PacketManager extends Thread {
 
-    private static final Logger logger = LoggerFactory.getLogger(Client.class);
+    private static final Logger logger = LoggerFactory.getLogger(PacketManager.class);
 
-    private Socket _socket;
     private Socket socket;
     private ObjectOutput oos;
 
-    public Client(Socket socket) {
+    public PacketManager(Socket socket) {
         this.socket = socket;
     }
 
-    public Client() { }
+    public PacketManager() { }
 
-    @Override
     public ObjectOutput getOutputStream() {
         if (socket != null) {
             if (oos == null) {
@@ -47,7 +48,6 @@ public class Client extends Thread implements IClient {
         return null;
     }
 
-    @Override
     public void connect(String address, int port) {
         try {
             socket = new Socket(address, port);
@@ -60,7 +60,6 @@ public class Client extends Thread implements IClient {
         }
     }
 
-    @Override
     public void send(Packet packet) {
         ExecutorService executor = SendThreadProvider.INSTANCE.getExecutorService();
         Runnable task = new SendPacketTask(this, packet);

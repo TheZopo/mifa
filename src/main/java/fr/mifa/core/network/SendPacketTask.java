@@ -6,15 +6,15 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 
 public class SendPacketTask implements Runnable {
-    private IClient client;
+    private PacketManager packetManager;
     private Packet packet;
 
     @Override
     public void run() {
-        if (packet == null || client == null) {
+        if (packet == null || packetManager == null) {
             return;
         }
-        ObjectOutput stream = client.getOutputStream();
+        ObjectOutput stream = packetManager.getOutputStream();
         try {
             stream.writeObject(packet);
             stream.flush(); // TODO do we need to flush every time ?
@@ -24,8 +24,8 @@ public class SendPacketTask implements Runnable {
         }
     }
 
-    public SendPacketTask(IClient client, Packet packet) {
-        this.client = client;
+    public SendPacketTask(PacketManager packetManager, Packet packet) {
+        this.packetManager = packetManager;
         this.packet = packet;
     }
 }
