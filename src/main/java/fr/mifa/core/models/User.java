@@ -1,18 +1,14 @@
 package fr.mifa.core.models;
 
-import java.util.ArrayList;
+import fr.mifa.core.network.PacketManager;
 
 public class User extends Model {
     private String nickname;
 
-    private ArrayList<Integer> joinedRoomsIds;
+    private transient PacketManager packetManager;
 
-    public ArrayList<Integer> getJoinedRoomsIds() {
-        return joinedRoomsIds;
-    }
-
-    public void setJoinedRoomsIds(ArrayList<Integer> joinedRoomsIds) {
-        this.joinedRoomsIds = joinedRoomsIds;
+    public PacketManager getPacketManager() {
+        return packetManager;
     }
 
     public String getNickname() {
@@ -21,5 +17,10 @@ public class User extends Model {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public User(String nickname, PacketManager packetManager) {
+        this.nickname = nickname;
+        this.packetManager = packetManager;
     }
 }

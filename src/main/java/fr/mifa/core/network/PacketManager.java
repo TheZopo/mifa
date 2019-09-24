@@ -1,5 +1,6 @@
 package fr.mifa.core.network;
 
+import fr.mifa.core.models.User;
 import fr.mifa.core.network.protocol.Packet;
 import fr.mifa.core.utils.SendThreadProvider;
 import org.slf4j.Logger;
@@ -23,12 +24,21 @@ public abstract class PacketManager extends Thread {
     private Socket socket;
     private ObjectOutput oos;
     private ObjectInput ois;
+    private User user;
 
     public PacketManager(Socket socket) {
         this.socket = socket;
     }
 
     public PacketManager() { }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public ObjectOutput getOutputStream() {
         if (socket != null) {

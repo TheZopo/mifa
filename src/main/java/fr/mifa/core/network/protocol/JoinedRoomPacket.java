@@ -20,4 +20,9 @@ public class JoinedRoomPacket extends Packet {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
+    public JoinedRoomPacket(String nickname, int roomId) {
+        this.roomId = roomId;
+        this.nickname = nickname;
+    }
 }

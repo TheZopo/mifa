@@ -1,13 +1,21 @@
 package fr.mifa.core.models;
 
-public class Model {
+public abstract class Model {
+
+    protected Model() {
+        this.id = createID();
+    }
+
     private int id;
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    private static int idCounter = 0;
+
+    protected static synchronized int createID()
+    {
+        return idCounter++;
     }
 }
