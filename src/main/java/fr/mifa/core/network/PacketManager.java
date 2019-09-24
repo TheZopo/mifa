@@ -6,13 +6,7 @@ import fr.mifa.core.utils.SendThreadProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
@@ -87,6 +81,9 @@ public abstract class PacketManager extends Thread {
                 Packet packet = (Packet) ois.readObject();
                 processPacket(packet);
             }
+        } catch (EOFException ex) {
+            logger.debug("Client disconnected");
+            onDisconnected();
         } catch (IOException ex) {
             logger.error(ex.toString());
         } catch (ClassNotFoundException e) {
@@ -95,4 +92,6 @@ public abstract class PacketManager extends Thread {
     }
 
     protected abstract void processPacket(Packet packet);
+
+    protected void onDisconnected() {}
 }
