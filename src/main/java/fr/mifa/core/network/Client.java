@@ -1,6 +1,7 @@
 package fr.mifa.core.network;
 
 import fr.mifa.core.network.protocol.Packet;
+import fr.mifa.core.utils.SendThreadProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.concurrent.ExecutorService;
 
 public class Client extends Thread implements IClient {
 
@@ -60,7 +62,9 @@ public class Client extends Thread implements IClient {
 
     @Override
     public void send(Packet packet) {
-        // TODO get newSingleThreadExecutor and launch SendPacketTask
+        ExecutorService executor = SendThreadProvider.INSTANCE.getExecutorService();
+        Runnable task = new SendPacketTask(this, packet);
+        executor.execute(task);
     }
 
     @Override
