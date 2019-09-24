@@ -10,4 +10,9 @@ public class TextMessage extends Message {
     public void setText(String text) {
         this.text = text;
     }
+
+    public TextMessage(int roomId, String text) {
+        super(roomId);
+        this.text = text;
+    }
 }

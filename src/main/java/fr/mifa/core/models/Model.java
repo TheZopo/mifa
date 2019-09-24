@@ -1,6 +1,8 @@
 package fr.mifa.core.models;
 
-public abstract class Model {
+import java.io.Serializable;
+
+public abstract class Model implements Serializable {
 
     protected Model() {
         this.id = createID();

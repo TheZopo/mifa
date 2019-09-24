@@ -30,4 +30,8 @@ public abstract class Message extends Model {
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
+
+    public Message(int roomId) {
+        this.roomId = roomId;
+    }
 }
