@@ -8,6 +8,8 @@ public class Room extends Model {
 
     private ArrayList<User> users;
 
+    private ArrayList<Message> history;
+
     public String getName() {
         return name;
     }
@@ -24,8 +26,17 @@ public class Room extends Model {
         this.users = users;
     }
 
-    public Room() {
+    public ArrayList<Message> getHistory() {
+        return history;
+    }
+
+    public void setHistory(ArrayList<Message> history) {
+        this.history = history;
+    }
+
+    public Room(String name) {
         this.users = new ArrayList<>();
-        this.name = "Room " + this.getId(); //TODO change
+        this.name = name;
+        this.history = new ArrayList<>();
     }
 }

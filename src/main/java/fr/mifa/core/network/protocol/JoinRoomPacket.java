@@ -1,17 +1,17 @@
 package fr.mifa.core.network.protocol;
 
 public class JoinRoomPacket extends Packet {
-    int roomId;
+    String roomName;
 
-    public int getRoomId() {
-        return roomId;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
-    public JoinRoomPacket(int roomId) {
-        this.roomId = roomId;
+    public JoinRoomPacket(String roomName) {
+        this.roomName = roomName;
     }
 }

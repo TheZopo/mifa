@@ -1,7 +1,7 @@
 package fr.mifa.core.models;
 
 public abstract class Message extends Model {
-    private int roomId;
+    private String roomName;
 
     private int authorId;
 
@@ -9,12 +9,12 @@ public abstract class Message extends Model {
 
     private long timestamp;
 
-    public int getRoomId() {
-        return roomId;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
     public int getAuthorId() {
@@ -37,8 +37,8 @@ public abstract class Message extends Model {
         return timestamp;
     }
 
-    public Message(int roomId) {
-        this.roomId = roomId;
+    public Message(String roomName) {
+        this.roomName = roomName;
         this.timestamp = System.currentTimeMillis();
     }
 }

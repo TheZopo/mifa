@@ -1,17 +1,17 @@
 package fr.mifa.core.network.protocol;
 
 public class LeaveRoomPacket extends Packet {
-    int roomId;
+    String roomName;
 
-    public int getRoomId() {
-        return roomId;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
-    public LeaveRoomPacket(int roomId) {
-        this.roomId = roomId;
+    public LeaveRoomPacket(String roomName) {
+        this.roomName = roomName;
     }
 }
