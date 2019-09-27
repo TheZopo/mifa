@@ -38,4 +38,13 @@ public class User extends Model {
         this.packetManager = packetManager;
         this.connected = true;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof User) {
+            User user = (User) obj;
+            return nickname.equals(user.nickname) && user.getId() == this.getId();
+        }
+        return super.equals(obj);
+    }
 }
