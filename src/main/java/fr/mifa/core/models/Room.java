@@ -1,14 +1,24 @@
 package fr.mifa.core.models;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
 import java.util.ArrayList;
 
+import fr.mifa.core.network.RoomPacketManager;
+
 public class Room extends Model {
-
     private String name;
-
     private ArrayList<User> users;
-
     private ArrayList<Message> history;
+
+    private transient RoomPacketManager packetManager;
+
+    public Room(String name) {
+        this.users = new ArrayList<>();
+        this.name = name;
+        this.history = new ArrayList<>();
+    }
 
     public String getName() {
         return name;
@@ -34,9 +44,12 @@ public class Room extends Model {
         this.history = history;
     }
 
-    public Room(String name) {
-        this.users = new ArrayList<>();
-        this.name = name;
-        this.history = new ArrayList<>();
+    public RoomPacketManager getPacketManager() {
+        return packetManager;
+    }
+
+    public void setPacketManager(RoomPacketManager packetManager) {
+        this.packetManager = packetManager;
+        this.packetManager.start();
     }
 }
