@@ -2,7 +2,7 @@ package fr.mifa.core.network.protocol;
 
 import fr.mifa.core.models.Message;
 
-public class MessagePacket extends Packet {
+public class MessageSentPacket extends Packet {
     private Message message;
 
     public Message getMessage() {
@@ -13,7 +13,7 @@ public class MessagePacket extends Packet {
         this.message = message;
     }
 
-    public MessagePacket(Message message) {
+    public MessageSentPacket(Message message) {
         this.message = message;
     }
 }

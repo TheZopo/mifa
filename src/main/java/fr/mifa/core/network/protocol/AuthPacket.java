@@ -10,4 +10,8 @@ public class AuthPacket extends Packet {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
+    public AuthPacket(String nickname) {
+        this.nickname = nickname;
+    }
 }
