@@ -9,6 +9,8 @@ import fr.mifa.core.network.RoomPacketManager;
 
 public class Room extends Model {
     private String name;
+    private String address;
+    private int port;
     private ArrayList<User> users;
     private ArrayList<Message> history;
 
@@ -17,6 +19,16 @@ public class Room extends Model {
     public Room(String name) {
         this.users = new ArrayList<>();
         this.name = name;
+        this.history = new ArrayList<>();
+    }
+
+    public Room(String name, String address) {
+        super();
+        this.name = name;
+        this.address = address;
+        this.port = 3000 + getId();
+
+        this.users = new ArrayList<>();
         this.history = new ArrayList<>();
     }
 
@@ -51,5 +63,21 @@ public class Room extends Model {
     public void setPacketManager(RoomPacketManager packetManager) {
         this.packetManager = packetManager;
         this.packetManager.start();
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 }
