@@ -53,7 +53,7 @@ public abstract class RoomPacketManager extends Thread {
                 oos.writeObject(packet);
                 byte[] data = baos.toByteArray();
 
-                logger.info("Broadcasting multicast packet");
+                logger.info("Broadcasting multicast packet of size" + data.length);
                 socket.send(new DatagramPacket(data, data.length, group, port));
             } catch(IOException e) {
                 logger.error(e.toString());

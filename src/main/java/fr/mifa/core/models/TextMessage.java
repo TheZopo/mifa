@@ -15,4 +15,10 @@ public class TextMessage extends Message {
         super(roomName);
         this.text = text;
     }
+
+    public TextMessage(String roomName, String authorName, String text) {
+        super(roomName);
+        this.authorName = authorName;
+        this.text = text;
+    }
 }

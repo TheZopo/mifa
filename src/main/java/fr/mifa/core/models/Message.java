@@ -2,11 +2,8 @@ package fr.mifa.core.models;
 
 public abstract class Message extends Model {
     private String roomName;
-
     private int authorId;
-
-    private String authorName;
-
+    protected String authorName;
     private long timestamp;
 
     public String getRoomName() {
