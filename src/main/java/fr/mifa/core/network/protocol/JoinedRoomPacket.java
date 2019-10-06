@@ -4,8 +4,12 @@ import fr.mifa.core.models.Room;
 
 public class JoinedRoomPacket extends Packet {
     private Room room;
-
     private String nickname;
+
+    public JoinedRoomPacket(String nickname, Room room) {
+        this.room = room;
+        this.nickname = nickname;
+    }
 
     public Room getRoom() {
         return room;
@@ -23,8 +27,4 @@ public class JoinedRoomPacket extends Packet {
         this.nickname = nickname;
     }
 
-    public JoinedRoomPacket(String nickname, Room room) {
-        this.room = room;
-        this.nickname = nickname;
-    }
 }
