@@ -1,5 +1,6 @@
 package fr.mifa.core.services;
 
+import fr.mifa.core.network.protocol.ReactionPacket;
 import fr.mifa.core.utils.ApplicationDirectories;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
