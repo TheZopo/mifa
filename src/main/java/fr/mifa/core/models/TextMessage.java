@@ -11,14 +11,8 @@ public class TextMessage extends Message {
         this.text = text;
     }
 
-    public TextMessage(String roomName, String text) {
-        super(roomName);
-        this.text = text;
-    }
-
     public TextMessage(String roomName, String authorName, String text) {
-        super(roomName);
-        this.authorName = authorName;
+        super(roomName, authorName);
         this.text = text;
     }
 }
