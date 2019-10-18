@@ -45,6 +45,13 @@ public abstract class PacketManager extends Thread {
                     logger.error(ex.toString());
                 }
             }
+
+            try {
+                ((ObjectOutputStream) oos).reset();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             return oos;
         }
         else {

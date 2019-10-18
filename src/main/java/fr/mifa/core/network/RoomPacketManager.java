@@ -44,6 +44,14 @@ public abstract class RoomPacketManager extends Thread {
         }
     }
 
+    public void disconnect() {
+        try {
+            socket.leaveGroup(group);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void send(Packet packet) {
         ExecutorService executor = SendThreadProvider.INSTANCE.getExecutorService();
         Runnable task = () -> {
